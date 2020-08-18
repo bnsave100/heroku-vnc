@@ -6,6 +6,8 @@ RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         firefox \
+	python3 \
+	python3-pip \
 	zip \
 	unzip \
 	p7zip-full \
@@ -41,6 +43,8 @@ RUN set -ex; \
 	ibus-qt4 \
     && apt-get autoclean \
     && apt-get autoremove \
+    && pip3 install gdown \
+    && pip3 install speedtest-cli \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg-reconfigure locales
 
