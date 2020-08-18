@@ -6,6 +6,7 @@ RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         firefox \
+	p7zip-full \
 	git \
 	curl \
 	dbus-x11 \
@@ -42,8 +43,6 @@ RUN set -ex; \
 RUN dpkg-reconfigure locales
 
 ENV HOME=/root
-
-RUN curl --compressed -s https://raw.githubusercontent.com/labbots/google-drive-upload/master/install.sh | sh -s
 
 COPY . /app
 RUN chmod +x /app/mc && mv /app/mc /usr/local/bin/
