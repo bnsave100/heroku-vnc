@@ -5,7 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
-        dbus-x11 \
+        git \
+	curl \
+	dbus-x11 \
         nautilus \
         gedit \
         expect \
@@ -39,6 +41,9 @@ RUN set -ex; \
 RUN dpkg-reconfigure locales
 
 ENV HOME=/root
+
+RUN cd /app && wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x mc && cp mc /usr/local/bin/
+RUN curl --compressed -s https://raw.githubusercontent.com/labbots/google-drive-upload/master/install.sh | sh -s
 
 COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
