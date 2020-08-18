@@ -38,11 +38,12 @@ RUN set -ex; \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg-reconfigure locales
 
+ENV HOME=/root
+
 COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
 RUN chmod +x /app/expect_vnc.sh
-RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
 RUN echo "deb http://deb.anydesk.com/ all main"  >> /etc/apt/sources.list
 RUN wget --no-check-certificate https://dl.google.com/linux/linux_signing_key.pub -P /app
 RUN wget --no-check-certificate -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY -O /app/anydesk.key
@@ -50,9 +51,7 @@ RUN apt-key add /app/anydesk.key
 RUN apt-key add /app/linux_signing_key.pub
 RUN set -ex; \
     apt-get update \
-    && apt-get install -y --no-install-recommends \
-        google-chrome-stable \
-	anydesk
+    && apt-get install -y --no-install-recommends anydesk
 
 RUN echo xfce4-session >~/.xsession
 
