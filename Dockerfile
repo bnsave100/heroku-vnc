@@ -42,7 +42,7 @@ RUN dpkg-reconfigure locales
 
 ENV HOME=/root
 
-RUN cd /app && wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x mc && cp mc /usr/local/bin/
+RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x mc && mv mc /usr/local/bin
 RUN curl --compressed -s https://raw.githubusercontent.com/labbots/google-drive-upload/master/install.sh | sh -s
 
 COPY . /app
