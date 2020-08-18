@@ -42,7 +42,6 @@ RUN dpkg-reconfigure locales
 
 ENV HOME=/root
 
-chmod +x mc && mv mc /usr/local/bin
 RUN curl --compressed -s https://raw.githubusercontent.com/labbots/google-drive-upload/master/install.sh | sh -s
 
 COPY . /app
