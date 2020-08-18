@@ -6,6 +6,8 @@ RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         firefox \
+	zip \
+	unzip \
 	p7zip-full \
 	git \
 	curl \
