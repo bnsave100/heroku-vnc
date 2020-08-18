@@ -42,10 +42,11 @@ RUN dpkg-reconfigure locales
 
 ENV HOME=/root
 
-RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x mc && mv mc /usr/local/bin
+chmod +x mc && mv mc /usr/local/bin
 RUN curl --compressed -s https://raw.githubusercontent.com/labbots/google-drive-upload/master/install.sh | sh -s
 
 COPY . /app
+RUN chmod +x /app/mc && mv /app/mc /usr/local/bin/
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
 RUN chmod +x /app/expect_vnc.sh
